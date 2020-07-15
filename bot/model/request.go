@@ -122,6 +122,10 @@ func (this *Request) GetAccessToken() string {
 	return this.Common.Context.System.User.AccessToken
 }
 
+func (this *Request) GetApiAccessToken() string {
+	return this.Common.Context.System.ApiAccessToken
+}
+
 // 获取请求的时间戳
 func (this *Request) GetTimestamp() int {
 	i, err := strconv.Atoi(this.Common.Request.Timestamp)

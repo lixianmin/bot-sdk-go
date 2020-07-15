@@ -10,6 +10,7 @@ type System struct {
 	User        User
 	Application Application
 	Device      Device
+	ApiAccessToken string
 }
 
 type User struct {
