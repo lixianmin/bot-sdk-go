@@ -1,7 +1,7 @@
 package bot
 
 import (
-	"github.com/dueros/bot-sdk-go/bot/model"
+	"github.com/lixianmin/bot/model"
 )
 
 // 音频播放相关的事件处理注册

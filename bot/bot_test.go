@@ -1,7 +1,7 @@
 package bot
 
 import (
-	"github.com/dueros/bot-sdk-go/bot/util"
+	"github.com/lixianmin/bot/util"
 	"testing"
 )
 

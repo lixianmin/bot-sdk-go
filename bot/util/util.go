@@ -5,7 +5,7 @@ import (
 	"os"
 	"regexp"
 
-	"github.com/dueros/bot-sdk-go/bot/data"
+	"github.com/lixianmin/bot/data"
 )
 
 func FormatSpeech(speech string) data.Speech {

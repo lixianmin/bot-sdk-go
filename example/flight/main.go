@@ -10,10 +10,10 @@ import (
 	"os"
 	"strconv"
 
-	dueros "github.com/dueros/bot-sdk-go/bot"
-	"github.com/dueros/bot-sdk-go/bot/directive/display"
-	"github.com/dueros/bot-sdk-go/bot/directive/display/template"
-	"github.com/dueros/bot-sdk-go/bot/model"
+	dueros "github.com/lixianmin/bot"
+	"github.com/lixianmin/bot/directive/display"
+	"github.com/lixianmin/bot/directive/display/template"
+	"github.com/lixianmin/bot/model"
 )
 
 var CODE_INIT = false

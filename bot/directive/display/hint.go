@@ -1,8 +1,8 @@
 package display
 
 import (
-	"github.com/dueros/bot-sdk-go/bot/data"
-	"github.com/dueros/bot-sdk-go/bot/util"
+	"github.com/lixianmin/bot/data"
+	"github.com/lixianmin/bot/util"
 )
 
 type Hint struct {

@@ -1,7 +1,7 @@
 package audio_player
 
 import (
-	"github.com/dueros/bot-sdk-go/bot/directive"
+	"github.com/lixianmin/bot/directive"
 )
 
 var behaviorMap = map[string]bool{

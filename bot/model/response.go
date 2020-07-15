@@ -3,8 +3,8 @@ package model
 import (
 	"encoding/json"
 
-	"github.com/dueros/bot-sdk-go/bot/data"
-	"github.com/dueros/bot-sdk-go/bot/util"
+	"github.com/lixianmin/bot/data"
+	"github.com/lixianmin/bot/util"
 )
 
 type Response struct {
