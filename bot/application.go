@@ -18,7 +18,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/lixianmin/bot/model"
+	"github.com/lixianmin/bot-sdk-go/bot/model"
 )
 
 type Application struct {

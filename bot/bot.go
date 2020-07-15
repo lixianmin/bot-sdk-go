@@ -3,7 +3,7 @@ package bot
 import (
 	"reflect"
 
-	"github.com/lixianmin/bot/model"
+	"github.com/lixianmin/bot-sdk-go/bot/model"
 )
 
 // 技能基础类

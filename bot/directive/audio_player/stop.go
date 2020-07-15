@@ -1,7 +1,7 @@
 package audio_player
 
 import (
-	"github.com/lixianmin/bot/directive"
+	"github.com/lixianmin/bot-sdk-go/bot/directive"
 )
 
 type StopDirective struct {

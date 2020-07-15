@@ -1,13 +1,13 @@
 package main
 
 import (
-	dueros "github.com/lixianmin/bot"
-	//"github.com/lixianmin/bot/card"
-	//"github.com/lixianmin/bot/directive/audio_player"
-	"github.com/lixianmin/bot/directive/display"
-	"github.com/lixianmin/bot/directive/display/template"
-	//"github.com/lixianmin/bot/directive/video_player"
-	"github.com/lixianmin/bot/model"
+	dueros "github.com/lixianmin/bot-sdk-go/bot"
+	//"github.com/lixianmin/bot-sdk-go/bot/card"
+	//"github.com/lixianmin/bot-sdk-go/bot/directive/audio_player"
+	"github.com/lixianmin/bot-sdk-go/bot/directive/display"
+	"github.com/lixianmin/bot-sdk-go/bot/directive/display/template"
+	//"github.com/lixianmin/bot-sdk-go/bot/directive/video_player"
+	"github.com/lixianmin/bot-sdk-go/bot/model"
 )
 
 func main() {

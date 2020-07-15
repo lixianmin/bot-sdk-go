@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/lixianmin/bot/data"
+	"github.com/lixianmin/bot-sdk-go/bot/data"
 )
 
 type Dialog struct {

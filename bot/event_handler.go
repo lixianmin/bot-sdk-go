@@ -1,7 +1,7 @@
 package bot
 
 import (
-	"github.com/lixianmin/bot/model"
+	"github.com/lixianmin/bot-sdk-go/bot/model"
 )
 
 // ListTemplate 列表选择事件

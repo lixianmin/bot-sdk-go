@@ -1,7 +1,7 @@
 package bot
 
 import (
-	"github.com/lixianmin/bot/util"
+	"github.com/lixianmin/bot-sdk-go/bot/util"
 	"testing"
 )
 

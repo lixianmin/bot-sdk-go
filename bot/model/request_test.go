@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/lixianmin/bot/util"
+	"github.com/lixianmin/bot-sdk-go/bot/util"
 )
 
 func TestGetUserId(t *testing.T) {

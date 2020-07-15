@@ -1,7 +1,7 @@
 package video_player
 
 import (
-	"github.com/lixianmin/bot/directive"
+	"github.com/lixianmin/bot-sdk-go/bot/directive"
 )
 
 var behaviorMap = map[string]bool{

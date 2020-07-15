@@ -4,8 +4,8 @@ import (
 	//"reflect"
 	"testing"
 
-	"github.com/lixianmin/bot/model"
-	"github.com/lixianmin/bot/util"
+	"github.com/lixianmin/bot-sdk-go/bot/model"
+	"github.com/lixianmin/bot-sdk-go/bot/util"
 	"log"
 )
 

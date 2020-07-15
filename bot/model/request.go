@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/lixianmin/bot/data"
+	"github.com/lixianmin/bot-sdk-go/bot/data"
 )
 
 const (
