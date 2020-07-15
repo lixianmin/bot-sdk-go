@@ -9,5 +9,5 @@ type BaseDirective struct {
 }
 
 func (this *BaseDirective) GenToken() string {
-	return uuid.Must(uuid.NewV4()).String()
+	return uuid.NewV4().String()
 }
