@@ -2,8 +2,8 @@ package bot
 
 import (
 	"github.com/lixianmin/bot-sdk-go/bot/logger"
-	"reflect"
 	"github.com/lixianmin/bot-sdk-go/bot/model"
+	"reflect"
 )
 
 // 技能基础类

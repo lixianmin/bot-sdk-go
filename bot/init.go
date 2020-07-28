@@ -1,8 +1,8 @@
 package bot
 
 import (
-	"github.com/lixianmin/logo"
 	"github.com/lixianmin/bot-sdk-go/bot/logger"
+	"github.com/lixianmin/logo"
 )
 
 /********************************************************************
