@@ -1,8 +1,8 @@
 package bot
 
 import (
+	"github.com/lixianmin/bot-sdk-go/bot/logger"
 	"reflect"
-
 	"github.com/lixianmin/bot-sdk-go/bot/model"
 )
 
@@ -28,96 +28,102 @@ func NewBot() *Bot {
 }
 
 // 根据每个请求分别处理
-func (this *Bot) Handler(request string) string {
-	this.Request = model.NewRequest(request)
-	this.Session = model.NewSession(model.GetSessionData(request))
-	this.Response = model.NewResponse(this.Session, this.Request)
+func (my *Bot) Handler(request string) string {
+	my.Request = model.NewRequest(request)
+	my.Session = model.NewSession(model.GetSessionData(request))
+	my.Response = model.NewResponse(my.Session, my.Request)
 
-	this.dispatch()
+	my.dispatch()
 
-	return this.Response.Build()
+	return my.Response.Build()
 }
 
 // 添加对intent的处理函数
-func (this *Bot) AddIntentHandler(intentName string, fn func(bot *Bot, request *model.IntentRequest)) {
+func (my *Bot) AddIntentHandler(intentName string, fn func(bot *Bot, request *model.IntentRequest)) {
 	if intentName != "" {
-		this.intentHandler[intentName] = fn
+		my.intentHandler[intentName] = fn
 	}
 }
 
 // 添加对事件的处理函数
-func (this *Bot) AddEventListener(eventName string, fn func(bot *Bot, request interface{})) {
+func (my *Bot) AddEventListener(eventName string, fn func(bot *Bot, request interface{})) {
 	if eventName != "" {
-		this.eventHandler[eventName] = fn
+		my.eventHandler[eventName] = fn
 	}
 }
 
 // 添加事件默认处理函数
 // 比如，在播放视频时，技能会收到各种事件的上报，如果不想一一处理可以使用这个来添加处理
-func (this *Bot) AddDefaultEventListener(fn func(bot *Bot, request interface{})) {
-	this.defaultEventHandler = fn
+func (my *Bot) AddDefaultEventListener(fn func(bot *Bot, request interface{})) {
+	my.defaultEventHandler = fn
 }
 
 // 打开技能时的处理
-func (this *Bot) OnLaunchRequest(fn func(bot *Bot, request *model.LaunchRequest)) {
-	this.launchRequestHandler = fn
+func (my *Bot) OnLaunchRequest(fn func(bot *Bot, request *model.LaunchRequest)) {
+	my.launchRequestHandler = fn
 }
 
 // 技能关闭的处理，比如可以做一些清理的工作
 // TIP: 根据协议，技能关闭返回的结果，DuerOS不会返回给用户。
-func (this *Bot) OnSessionEndedRequest(fn func(bot *Bot, request *model.SessionEndedRequest)) {
-	this.sessionEndedRequestHandler = fn
+func (my *Bot) OnSessionEndedRequest(fn func(bot *Bot, request *model.SessionEndedRequest)) {
+	my.sessionEndedRequestHandler = fn
 }
 
-func (this *Bot) dispatch() {
-	switch request := this.Request.(type) {
+func (my *Bot) dispatch() {
+	switch request := my.Request.(type) {
 	case model.IntentRequest:
-		this.processIntentHandler(request)
+		my.processIntentHandler(request)
 		return
 	case model.LaunchRequest:
-		this.processLaunchHandler(request)
+		my.processLaunchHandler(request)
 		return
 	case model.SessionEndedRequest:
-		this.processSessionEndedHandler(request)
+		my.processSessionEndedHandler(request)
 		return
 	}
-	this.processEventHandler(this.Request)
+	my.processEventHandler(my.Request)
 }
 
-func (this *Bot) processLaunchHandler(request model.LaunchRequest) {
-	if this.launchRequestHandler != nil {
-		this.launchRequestHandler(this, &request)
+func (my *Bot) processLaunchHandler(request model.LaunchRequest) {
+	logger.Debug("userId=%q, deviceId=%q", request.GetUserId(), request.GetDeviceId())
+
+	if my.launchRequestHandler != nil {
+		my.launchRequestHandler(my, &request)
 	}
 }
 
-func (this *Bot) processSessionEndedHandler(request model.SessionEndedRequest) {
-	if this.sessionEndedRequestHandler != nil {
-		this.sessionEndedRequestHandler(this, &request)
+func (my *Bot) processSessionEndedHandler(request model.SessionEndedRequest) {
+	logger.Debug("userId=%q, deviceId=%q", request.GetUserId(), request.GetDeviceId())
+
+	if my.sessionEndedRequestHandler != nil {
+		my.sessionEndedRequestHandler(my, &request)
 	}
 }
 
-func (this *Bot) processIntentHandler(request model.IntentRequest) {
+func (my *Bot) processIntentHandler(request model.IntentRequest) {
 	intentName, _ := request.GetIntentName()
-	fn, ok := this.intentHandler[intentName]
+	fn, ok := my.intentHandler[intentName]
+	logger.Debug("userId=%q, deviceId=%q, intentName=%q, hasHandler=%v, request=%q", request.GetUserId(), request.GetDeviceId(), intentName, ok, request)
 
 	if ok {
-		fn(this, &request)
+		fn(my, &request)
 		return
 	}
 }
 
-func (this *Bot) processEventHandler(req interface{}) {
-	rVal := reflect.ValueOf(req)
+func (my *Bot) processEventHandler(request interface{}) {
+	rVal := reflect.ValueOf(request)
 	eventType := rVal.FieldByName("Type").Interface().(string)
 
-	fn, ok := this.eventHandler[eventType]
+	fn, ok := my.eventHandler[eventType]
+	logger.Debug("eventType=%q, hasHandler=%v, request=%v", eventType, ok, request)
 
 	if ok {
-		fn(this, req)
+		fn(my, request)
 		return
 	}
 
-	if this.defaultEventHandler != nil {
-		this.defaultEventHandler(this, req)
+	if my.defaultEventHandler != nil {
+		my.defaultEventHandler(my, request)
 	}
 }

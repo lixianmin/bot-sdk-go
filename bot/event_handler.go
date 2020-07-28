@@ -35,8 +35,8 @@ func (this *Bot) OnDisplayElementSelected(fn func(bot *Bot, request *model.Event
 //    "token": "{{STRING}}"
 //}
 // ```
-func (this *Bot) OnLinkAccountSuccessed(fn func(bot *Bot, request *model.EventRequest)) {
-	this.AddEventListener("LinkAccountSucceeded", func(bot *Bot, request interface{}) {
+func (my *Bot) OnLinkAccountSuccessed(fn func(bot *Bot, request *model.EventRequest)) {
+	my.AddEventListener("LinkAccountSucceeded", func(bot *Bot, request interface{}) {
 		req := request.(model.EventRequest)
 		fn(bot, &req)
 	})
@@ -51,8 +51,8 @@ func (this *Bot) OnLinkAccountSuccessed(fn func(bot *Bot, request *model.EventRe
 //    "timestamp": {{INT32}}
 //    "token": "{{STRING}}"
 //}
-func (this *Bot) OnScreenLinkClicked(fn func(bot *Bot, request *model.EventRequest)) {
-	this.AddEventListener("Screen.LinkClicked", func(bot *Bot, request interface{}) {
+func (my *Bot) OnScreenLinkClicked(fn func(bot *Bot, request *model.EventRequest)) {
+	my.AddEventListener("Screen.LinkClicked", func(bot *Bot, request interface{}) {
 		req := request.(model.EventRequest)
 		fn(bot, &req)
 	})

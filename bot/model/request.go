@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	INENT_REQUEST         = "IntentRequest"
+	INTENT_REQUEST        = "IntentRequest"
 	LAUNCH_REQUEST        = "LaunchRequest"
 	SESSION_ENDED_REQUEST = "SessionEndedRequest"
 
@@ -98,37 +98,37 @@ func (this *IntentRequest) GetQuery() string {
 }
 
 // 获取用户id
-func (this *Request) GetUserId() string {
-	return this.Common.Context.System.User.UserId
+func (my *Request) GetUserId() string {
+	return my.Common.Context.System.User.UserId
 }
 
 // 获取设备id
-func (this *Request) GetDeviceId() string {
-	return this.Common.Context.System.Device.DeviceId
+func (my *Request) GetDeviceId() string {
+	return my.Common.Context.System.Device.DeviceId
 }
 
 // 获取音频播放上下文
-func (this *Request) GetAudioPlayerContext() data.AudioPlayerContext {
-	return this.Common.Context.AudioPlayer
+func (my *Request) GetAudioPlayerContext() data.AudioPlayerContext {
+	return my.Common.Context.AudioPlayer
 }
 
 // 获取视频播放上下文
-func (this *Request) GetVideoPlayerContext() data.VideoPlayerContext {
-	return this.Common.Context.VideoPlayer
+func (my *Request) GetVideoPlayerContext() data.VideoPlayerContext {
+	return my.Common.Context.VideoPlayer
 }
 
 // 获取access token
-func (this *Request) GetAccessToken() string {
-	return this.Common.Context.System.User.AccessToken
+func (my *Request) GetAccessToken() string {
+	return my.Common.Context.System.User.AccessToken
 }
 
-func (this *Request) GetApiAccessToken() string {
-	return this.Common.Context.System.ApiAccessToken
+func (my *Request) GetApiAccessToken() string {
+	return my.Common.Context.System.ApiAccessToken
 }
 
 // 获取请求的时间戳
-func (this *Request) GetTimestamp() int {
-	i, err := strconv.Atoi(this.Common.Request.Timestamp)
+func (my *Request) GetTimestamp() int {
+	i, err := strconv.Atoi(my.Common.Request.Timestamp)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -136,19 +136,19 @@ func (this *Request) GetTimestamp() int {
 }
 
 // 获取请求id
-func (this *Request) GetRequestId() string {
-	return this.Common.Request.RequestId
+func (my *Request) GetRequestId() string {
+	return my.Common.Request.RequestId
 }
 
 // 获取技能id
-func (this *Request) GetBotId() string {
-	return this.Common.Context.System.Application.ApplicationId
+func (my *Request) GetBotId() string {
+	return my.Common.Context.System.Application.ApplicationId
 }
 
 // 验证请求时间戳合法性
-func (this *Request) VerifyTimestamp() bool {
+func (my *Request) VerifyTimestamp() bool {
 
-	if this.GetTimestamp()+180 > int(time.Now().Unix()) {
+	if my.GetTimestamp()+180 > int(time.Now().Unix()) {
 		return true
 	}
 
@@ -156,12 +156,12 @@ func (this *Request) VerifyTimestamp() bool {
 }
 
 // 获取设备支持的接口类型
-func (this *Request) GetSupportedInterfaces() map[string]interface{} {
-	return this.Common.Context.System.Device.SupportedInterfaces
+func (my *Request) GetSupportedInterfaces() map[string]interface{} {
+	return my.Common.Context.System.Device.SupportedInterfaces
 }
 
-func (this *Request) isSupportInterface(support string) bool {
-	supportedInterfaces := this.GetSupportedInterfaces()
+func (my *Request) isSupportInterface(support string) bool {
+	supportedInterfaces := my.GetSupportedInterfaces()
 	_, ok := supportedInterfaces[support]
 
 	if ok {
@@ -171,23 +171,23 @@ func (this *Request) isSupportInterface(support string) bool {
 }
 
 // 检查是否支持展现
-func (this *Request) IsSupportDisplay() bool {
-	return this.isSupportInterface("Display")
+func (my *Request) IsSupportDisplay() bool {
+	return my.isSupportInterface("Display")
 }
 
 // 检查是否支持音频播放
-func (this *Request) IsSupportAudio() bool {
-	return this.isSupportInterface("AudioPlayer")
+func (my *Request) IsSupportAudio() bool {
+	return my.isSupportInterface("AudioPlayer")
 }
 
 // 检查是否支持视频播放
-func (this *Request) IsSupportVideo() bool {
-	return this.isSupportInterface("VideoPlayer")
+func (my *Request) IsSupportVideo() bool {
+	return my.isSupportInterface("VideoPlayer")
 }
 
 // 验证技能id合法性
-func (this *Request) VerifyBotID(myBotID string) bool {
-	if this.GetBotId() == myBotID {
+func (my *Request) VerifyBotID(myBotID string) bool {
+	if my.GetBotId() == myBotID {
 		return true
 	}
 	return false
@@ -225,7 +225,7 @@ func NewRequest(rawData string) interface{} {
 		return false
 	}
 
-	if requestType == INENT_REQUEST {
+	if requestType == INTENT_REQUEST {
 		request := IntentRequest{}
 		request.Type = requestType
 		request.Common = common

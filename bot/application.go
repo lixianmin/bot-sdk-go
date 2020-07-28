@@ -29,7 +29,7 @@ type Application struct {
 }
 
 // 创建一个HTTP服务
-func (this *Application) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (my *Application) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	defer r.Body.Close()
 	//心跳请求
@@ -48,17 +48,17 @@ func (this *Application) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	r = r.WithContext(context.WithValue(r.Context(), "requestBody", body))
 
-	if !this.Verify(w, r) {
+	if !my.Verify(w, r) {
 		return
 	}
 
-	ret := this.Handler(string(body))
+	ret := my.Handler(string(body))
 	w.Write([]byte(ret))
 }
 
 // 启动HTTP服务
-func (this *Application) Start(host string) {
-	err := http.ListenAndServe(host, this)
+func (my *Application) Start(host string) {
+	err := http.ListenAndServe(host, my)
 
 	if err != nil {
 		log.Fatal(err)
@@ -66,12 +66,12 @@ func (this *Application) Start(host string) {
 }
 
 // 验证请求是否合法
-func (this *Application) Verify(w http.ResponseWriter, r *http.Request) bool {
-	if !this.DisableVerifyJson && !verifyJSON(w, r, this.AppId) {
+func (my *Application) Verify(w http.ResponseWriter, r *http.Request) bool {
+	if !my.DisableVerifyJson && !verifyJSON(w, r, my.AppId) {
 		return false
 	}
 
-	if !this.DisableCertificate && !validateRequest(w, r) {
+	if !my.DisableCertificate && !validateRequest(w, r) {
 		return false
 	}
 	return true
