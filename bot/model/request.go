@@ -107,6 +107,7 @@ func (my *Request) GetDeviceId() string {
 	return my.Common.Context.System.Device.DeviceId
 }
 
+// 这个就是cuid/sn
 func (my *Request) GetOriginalDeviceId() string {
 	return my.Common.Context.System.Device.OriginalDeviceId
 }
