@@ -107,6 +107,26 @@ func (my *Request) GetDeviceId() string {
 	return my.Common.Context.System.Device.DeviceId
 }
 
+func (my *Request) GetOriginalDeviceId() string {
+	return my.Common.Context.System.Device.OriginalDeviceId
+}
+
+func (my *Request) GetUserDeviceId() string {
+	return my.Common.Context.System.Device.UserDeviceId
+}
+
+func (my *Request) GetDeviceIPAddress() string {
+	return my.Common.Context.System.Device.DeviceIPAddress
+}
+
+func (my *Request) GetBaiduUid() string {
+	return my.Common.Context.System.User.UserInfo.Account.Baidu.BaiduUid
+}
+
+func (my *Request) GetCity() string {
+	return my.Common.Context.System.User.UserInfo.Location.City
+}
+
 // 获取音频播放上下文
 func (my *Request) GetAudioPlayerContext() data.AudioPlayerContext {
 	return my.Common.Context.AudioPlayer

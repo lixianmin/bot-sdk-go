@@ -7,9 +7,9 @@ type Session struct {
 }
 
 type System struct {
-	User        User
-	Application Application
-	Device      Device
+	User           User
+	Application    Application
+	Device         Device
 	ApiAccessToken string
 }
 
@@ -19,7 +19,22 @@ type User struct {
 	UserInfo    UserInfo
 }
 
+type Account struct {
+	Baidu struct {
+		BaiduUid string
+	}
+}
+
+type Location struct {
+	City        string
+	CountryCode string
+	CityCode    string
+	Province    string
+}
+
 type UserInfo struct {
+	Account  Account
+	Location Location
 }
 
 type Application struct {
@@ -28,6 +43,9 @@ type Application struct {
 
 type Device struct {
 	DeviceId            string
+	OriginalDeviceId    string
+	UserDeviceId        string
+	DeviceIPAddress     string
 	SupportedInterfaces map[string]interface{}
 }
 

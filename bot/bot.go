@@ -29,6 +29,8 @@ func NewBot() *Bot {
 
 // 根据每个请求分别处理
 func (my *Bot) Handler(request string) string {
+	logger.Debug(request)
+	
 	my.Request = model.NewRequest(request)
 	my.Session = model.NewSession(model.GetSessionData(request))
 	my.Response = model.NewResponse(my.Session, my.Request)
