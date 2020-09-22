@@ -87,7 +87,7 @@ func (my *Bot) dispatch() {
 }
 
 func (my *Bot) processLaunchHandler(request model.LaunchRequest) {
-	logger.Info("userId=%q, sn=%q", request.GetUserId(), request.GetOriginalDeviceId())
+	logger.Info("uid=%q, sn=%q", request.GetUserId(), request.GetOriginalDeviceId())
 
 	if my.launchRequestHandler != nil {
 		my.launchRequestHandler(my, &request)
@@ -95,7 +95,7 @@ func (my *Bot) processLaunchHandler(request model.LaunchRequest) {
 }
 
 func (my *Bot) processSessionEndedHandler(request model.SessionEndedRequest) {
-	logger.Info("userId=%q, sn=%q", request.GetUserId(), request.GetOriginalDeviceId())
+	logger.Info("uid=%q, sn=%q", request.GetUserId(), request.GetOriginalDeviceId())
 
 	if my.sessionEndedRequestHandler != nil {
 		my.sessionEndedRequestHandler(my, &request)
@@ -105,7 +105,7 @@ func (my *Bot) processSessionEndedHandler(request model.SessionEndedRequest) {
 func (my *Bot) processIntentHandler(request model.IntentRequest) {
 	intentName, _ := request.GetIntentName()
 	fn, ok := my.intentHandler[intentName]
-	logger.Info("userId=%q, sn=%q, intentName=%q, hasHandler=%v", request.GetUserId(), request.GetOriginalDeviceId(), intentName, ok)
+	logger.Info("uid=%q, sn=%q, intentName=%q, hasHandler=%v", request.GetUserId(), request.GetOriginalDeviceId(), intentName, ok)
 
 	if ok {
 		fn(my, &request)
