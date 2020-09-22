@@ -25,7 +25,7 @@ type Application struct {
 	AppId              string
 	DisableCertificate bool
 	DisableVerifyJson  bool
-	Handler            func(rawRequest []byte) string
+	Handler            func(rawData []byte) string
 }
 
 // 创建一个HTTP服务
