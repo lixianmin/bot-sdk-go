@@ -8,9 +8,9 @@ import (
 	"crypto/sha1"
 	"crypto/x509"
 	"encoding/base64"
-	"encoding/json"
 	"encoding/pem"
 	"errors"
+	"github.com/lixianmin/got/convert"
 	"io"
 	"io/ioutil"
 	"log"
@@ -91,7 +91,7 @@ func verifyJSON(w http.ResponseWriter, r *http.Request, appId string) bool {
 
 	body := r.Context().Value("requestBody").([]byte)
 
-	if err := json.Unmarshal(body, &req.Common); err != nil {
+	if err := convert.FromJsonE(body, &req.Common); err != nil {
 		HTTPError(w, err.Error(), "Bad Request", http.StatusBadRequest)
 		return false
 	}

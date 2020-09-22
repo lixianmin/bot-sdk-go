@@ -2,8 +2,8 @@ package main
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
+	"github.com/lixianmin/got/convert"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -112,7 +112,7 @@ func flightSearch(this *dueros.Bot, request *model.IntentRequest) {
 
 func getCity(jsonStr string) string {
 	city := CitySlot{}
-	if err := json.Unmarshal([]byte(jsonStr), &city); err != nil {
+	if err := convert.FromJsonE([]byte(jsonStr), &city); err != nil {
 		log.Fatal("city slot parse error")
 		return ""
 	}
@@ -138,7 +138,7 @@ func getFlight(date, departure, destination string) *Result {
 			Prices []Result
 		}{}
 
-		if err := json.Unmarshal(body, &d); err != nil {
+		if err := convert.FromJsonE(body, &d); err != nil {
 			log.Fatal("flight result parse error")
 			return nil
 		}
@@ -164,7 +164,7 @@ func getCityCode(city string) string {
 
 		d := CityList{}
 		jsonBlob, _ := ioutil.ReadAll(f)
-		if err := json.Unmarshal(jsonBlob, &d); err != nil {
+		if err := convert.FromJsonE(jsonBlob, &d); err != nil {
 			log.Fatal("json parse error")
 			return ""
 		}

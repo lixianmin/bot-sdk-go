@@ -1,7 +1,7 @@
 package model
 
 import (
-	"encoding/json"
+	"github.com/lixianmin/got/convert"
 
 	"github.com/lixianmin/bot-sdk-go/bot/data"
 	"github.com/lixianmin/bot-sdk-go/bot/util"
@@ -129,7 +129,7 @@ func (my *Response) Build() string {
 		}
 	}
 
-	response, _ := json.Marshal(ret)
+	response, _ := convert.ToJsonE(ret)
 
 	return string(response)
 }
