@@ -10,7 +10,7 @@ import (
 
 // 音频开始播放事件
 func (my *Bot) OnAudioPlaybackStarted(fn func(bot *Bot, request *model.AudioPlayerEventRequest)) {
-	my.AddEventListener(model.AUDIO_PLAYER_PLAYBACK_STARTED, func(bot *Bot, request interface{}) {
+	my.AddEventListener(model.AUDIO_PLAYER_PLAYBACK_STARTED, func(bot *Bot, request interface{}, response *model.Response) {
 		req := request.(model.AudioPlayerEventRequest)
 		fn(bot, &req)
 	})
@@ -18,7 +18,7 @@ func (my *Bot) OnAudioPlaybackStarted(fn func(bot *Bot, request *model.AudioPlay
 
 // 音频停止播放事件
 func (my *Bot) OnAudioPlaybackStopped(fn func(bot *Bot, request *model.AudioPlayerEventRequest)) {
-	my.AddEventListener(model.AUDIO_PLAYER_PLAYBACK_STOPPED, func(bot *Bot, request interface{}) {
+	my.AddEventListener(model.AUDIO_PLAYER_PLAYBACK_STOPPED, func(bot *Bot, request interface{}, response *model.Response) {
 		req := request.(model.AudioPlayerEventRequest)
 		fn(bot, &req)
 	})
@@ -26,7 +26,7 @@ func (my *Bot) OnAudioPlaybackStopped(fn func(bot *Bot, request *model.AudioPlay
 
 // 音频播放完成事件
 func (my *Bot) OnAudioPlaybackFinished(fn func(bot *Bot, request *model.AudioPlayerEventRequest)) {
-	my.AddEventListener(model.AUDIO_PLAYER_PLAYBACK_FINISHED, func(bot *Bot, request interface{}) {
+	my.AddEventListener(model.AUDIO_PLAYER_PLAYBACK_FINISHED, func(bot *Bot, request interface{}, response *model.Response) {
 		req := request.(model.AudioPlayerEventRequest)
 		fn(bot, &req)
 	})
@@ -34,7 +34,7 @@ func (my *Bot) OnAudioPlaybackFinished(fn func(bot *Bot, request *model.AudioPla
 
 // 音频快要播放结束上报的事件
 func (my *Bot) OnAudioPlaybackNearlyFinished(fn func(bot *Bot, request *model.AudioPlayerEventRequest)) {
-	my.AddEventListener(model.AUDIO_PLAYER_PLAYBACK_NEARLY_FINISHED, func(bot *Bot, request interface{}) {
+	my.AddEventListener(model.AUDIO_PLAYER_PLAYBACK_NEARLY_FINISHED, func(bot *Bot, request interface{}, response *model.Response) {
 		req := request.(model.AudioPlayerEventRequest)
 		fn(bot, &req)
 	})
@@ -42,7 +42,7 @@ func (my *Bot) OnAudioPlaybackNearlyFinished(fn func(bot *Bot, request *model.Au
 
 // 音频周期上报播放进度
 func (my *Bot) OnAudioRrogressReportIntevalElapsed(fn func(bot *Bot, request *model.AudioPlayerEventRequest)) {
-	my.AddEventListener(model.AUDIO_PLAYER_PROGRESS_REPORT_INTERVAL_ELAPSED, func(bot *Bot, request interface{}) {
+	my.AddEventListener(model.AUDIO_PLAYER_PROGRESS_REPORT_INTERVAL_ELAPSED, func(bot *Bot, request interface{}, response *model.Response) {
 		req := request.(model.AudioPlayerEventRequest)
 		fn(bot, &req)
 	})

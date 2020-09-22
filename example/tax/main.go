@@ -15,7 +15,7 @@ func main() {
 	bot := dueros.NewBot()                   // 创建bot 只创建一次
 	//bot.AddDefaultEventListener(defaultRequest) // 添加默认事件的监听
 	bot.AddIntentHandler("test.inquiry888", func(this *dueros.Bot, request *model.IntentRequest) {
-		this.Session.SetAttribute("key1", "test")
+		//this.Session.SetAttribute("key1", "test")
 		template := template.NewBodyTemplate1()
 		template.SetTitle("hah")
 		template.SetPlainContent("欢迎查询")

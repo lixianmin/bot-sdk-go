@@ -18,22 +18,22 @@ func main() {
 	application.Start(":8080")                                                                             // 启动服务器
 }
 
-func launchRequest(bot *dueros.Bot, request *model.LaunchRequest) {
+func launchRequest(bot *dueros.Bot, request *model.LaunchRequest, response *model.Response) {
 	txtCard := card.NewTextCard("欢迎使用，请说开始测试")
-	bot.Response.Tell("欢迎使用，请说开始测试")
-	bot.Response.DisplayCard(txtCard)
+	response.Tell("欢迎使用，请说开始测试")
+	response.DisplayCard(txtCard)
 }
 
-func startPlay(bot *dueros.Bot, request *model.IntentRequest) {
+func startPlay(bot *dueros.Bot, request *model.IntentRequest, response *model.Response) {
 	mp3 := audio_player.NewPlayDirective("http://baobaozhidao.bj.bcebos.com/beilehu%2F%E9%9D%92%E8%9B%99%E4%B9%90%E9%98%9F-%E5%B0%8F%E8%B7%B3%E8%9B%99.mp3")
 	info := audio_player.NewPlayerInfo()
 	info.SetTitle("小跳蛙")
 	info.SetTitleSubtext1("xiaotiaowa")
 	mp3.SetPlayerInfo(info)
-	bot.Response.Command(mp3)
+	response.Command(mp3)
 }
 
-func defaultRequest(bot *dueros.Bot, request interface{}) {
-	bot.Response.HoldOn()
-	bot.Response.CloseMicrophone()
+func defaultRequest(bot *dueros.Bot, request interface{}, response *model.Response) {
+	response.HoldOn()
+	response.CloseMicrophone()
 }

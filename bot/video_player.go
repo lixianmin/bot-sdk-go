@@ -10,7 +10,7 @@ import (
 
 // 视频开始播放事件
 func (my *Bot) OnVideoPlaybackStarted(fn func(bot *Bot, request *model.VideoPlayerEventRequest)) {
-	my.AddEventListener(model.VIDEO_PLAYER_PLAYBACK_STARTED, func(bot *Bot, request interface{}) {
+	my.AddEventListener(model.VIDEO_PLAYER_PLAYBACK_STARTED, func(bot *Bot, request interface{}, response *model.Response) {
 		req := request.(model.VideoPlayerEventRequest)
 		fn(bot, &req)
 	})
@@ -18,7 +18,7 @@ func (my *Bot) OnVideoPlaybackStarted(fn func(bot *Bot, request *model.VideoPlay
 
 // 视频停止播放事件
 func (my *Bot) OnVideoPlaybackStopped(fn func(bot *Bot, request *model.VideoPlayerEventRequest)) {
-	my.AddEventListener(model.VIDEO_PLAYER_PLAYBACK_STOPPED, func(bot *Bot, request interface{}) {
+	my.AddEventListener(model.VIDEO_PLAYER_PLAYBACK_STOPPED, func(bot *Bot, request interface{}, response *model.Response) {
 		req := request.(model.VideoPlayerEventRequest)
 		fn(bot, &req)
 	})
@@ -26,7 +26,7 @@ func (my *Bot) OnVideoPlaybackStopped(fn func(bot *Bot, request *model.VideoPlay
 
 // 视频播放完成事件
 func (my *Bot) OnVideoPlaybackFinished(fn func(bot *Bot, request *model.VideoPlayerEventRequest)) {
-	my.AddEventListener(model.VIDEO_PLAYER_PLAYBACK_FINISHED, func(bot *Bot, request interface{}) {
+	my.AddEventListener(model.VIDEO_PLAYER_PLAYBACK_FINISHED, func(bot *Bot, request interface{}, response *model.Response) {
 		req := request.(model.VideoPlayerEventRequest)
 		fn(bot, &req)
 	})
@@ -34,7 +34,7 @@ func (my *Bot) OnVideoPlaybackFinished(fn func(bot *Bot, request *model.VideoPla
 
 // 视频快要播放结束上报的事件
 func (my *Bot) OnVideoPlaybackNearlyFinished(fn func(bot *Bot, request *model.VideoPlayerEventRequest)) {
-	my.AddEventListener(model.VIDEO_PLAYER_PLAYBACK_NEARLY_FINISHED, func(bot *Bot, request interface{}) {
+	my.AddEventListener(model.VIDEO_PLAYER_PLAYBACK_NEARLY_FINISHED, func(bot *Bot, request interface{}, response *model.Response) {
 		req := request.(model.VideoPlayerEventRequest)
 		fn(bot, &req)
 	})
@@ -42,7 +42,7 @@ func (my *Bot) OnVideoPlaybackNearlyFinished(fn func(bot *Bot, request *model.Vi
 
 // 视频周期上报播放进度
 func (my *Bot) OnVideoRrogressReportIntevalElapsed(fn func(bot *Bot, request *model.VideoPlayerEventRequest)) {
-	my.AddEventListener(model.VIDEO_PLAYER_PROGRESS_REPORT_INTERVAL_ELAPSED, func(bot *Bot, request interface{}) {
+	my.AddEventListener(model.VIDEO_PLAYER_PROGRESS_REPORT_INTERVAL_ELAPSED, func(bot *Bot, request interface{}, response *model.Response) {
 		req := request.(model.VideoPlayerEventRequest)
 		fn(bot, &req)
 	})
@@ -50,7 +50,7 @@ func (my *Bot) OnVideoRrogressReportIntevalElapsed(fn func(bot *Bot, request *mo
 
 // 视频自动暂停后上报
 func (my *Bot) OnVideoPlayerScheduledStopReached(fn func(bot *Bot, request *model.VideoPlayerEventRequest)) {
-	my.AddEventListener(model.VIDEO_PLAYER_PLAYBACK_SCHEDULED_STOP_REACHED, func(bot *Bot, request interface{}) {
+	my.AddEventListener(model.VIDEO_PLAYER_PLAYBACK_SCHEDULED_STOP_REACHED, func(bot *Bot, request interface{}, response *model.Response) {
 		req := request.(model.VideoPlayerEventRequest)
 		fn(bot, &req)
 	})

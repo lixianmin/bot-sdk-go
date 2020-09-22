@@ -300,5 +300,4 @@ func NewRequest(rawData []byte) interface{} {
 		}
 		return request
 	}
-	return false
 }
