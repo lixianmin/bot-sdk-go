@@ -29,7 +29,7 @@ func NewBot() *Bot {
 
 // 根据每个请求分别处理
 func (my *Bot) Handler(request string) string {
-	logger.Debug(request)
+	//logger.Debug(request)
 	
 	my.Request = model.NewRequest(request)
 	my.Session = model.NewSession(model.GetSessionData(request))
@@ -105,7 +105,7 @@ func (my *Bot) processSessionEndedHandler(request model.SessionEndedRequest) {
 func (my *Bot) processIntentHandler(request model.IntentRequest) {
 	intentName, _ := request.GetIntentName()
 	fn, ok := my.intentHandler[intentName]
-	logger.Debug("userId=%q, sn=%q, intentName=%q, hasHandler=%v, request=%q", request.GetUserId(), request.GetOriginalDeviceId(), intentName, ok, request)
+	logger.Debug("userId=%q, sn=%q, intentName=%q, hasHandler=%v", request.GetUserId(), request.GetOriginalDeviceId(), intentName, ok)
 
 	if ok {
 		fn(my, &request)
@@ -118,7 +118,7 @@ func (my *Bot) processEventHandler(request interface{}) {
 	eventType := rVal.FieldByName("Type").Interface().(string)
 
 	fn, ok := my.eventHandler[eventType]
-	logger.Debug("eventType=%q, hasHandler=%v, request=%v", eventType, ok, request)
+	logger.Debug("eventType=%q, hasHandler=%v", eventType, ok)
 
 	if ok {
 		fn(my, request)
