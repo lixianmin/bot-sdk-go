@@ -214,34 +214,30 @@ func (my *Request) VerifyBotID(myBotID string) bool {
 	return false
 }
 
-func getType(rawData string) string {
-	jsonBlob := []byte(rawData)
+func getType(rawData []byte) string {
 	d := data.LaunchRequest{}
 
-	if err := json.Unmarshal(jsonBlob, &d); err != nil {
+	if err := json.Unmarshal(rawData, &d); err != nil {
 		log.Println(err)
 	}
 
 	return d.Request.Type
 }
 
-func GetSessionData(rawData string) data.Session {
-	jsonBlob := []byte(rawData)
+func GetSessionData(rawData []byte) data.Session {
 	common := data.RequestPart{}
-	if err := json.Unmarshal(jsonBlob, &common); err != nil {
+	if err := json.Unmarshal(rawData, &common); err != nil {
 		log.Println(err)
 	}
 
 	return common.Session
 }
 
-func NewRequest(rawData string) interface{} {
+func NewRequest(rawData []byte) interface{} {
 	requestType := getType(rawData)
 
-	jsonBlob := []byte(rawData)
-
 	common := data.RequestPart{}
-	if err := json.Unmarshal(jsonBlob, &common); err != nil {
+	if err := json.Unmarshal(rawData, &common); err != nil {
 		log.Println(err)
 		return false
 	}
@@ -250,7 +246,7 @@ func NewRequest(rawData string) interface{} {
 		request := IntentRequest{}
 		request.Type = requestType
 		request.Common = common
-		if err := json.Unmarshal(jsonBlob, &request.Data); err != nil {
+		if err := json.Unmarshal(rawData, &request.Data); err != nil {
 			log.Println(err)
 			return false
 		}
@@ -261,7 +257,7 @@ func NewRequest(rawData string) interface{} {
 		request := LaunchRequest{}
 		request.Type = requestType
 		request.Common = common
-		if err := json.Unmarshal(jsonBlob, &request.Data); err != nil {
+		if err := json.Unmarshal(rawData, &request.Data); err != nil {
 			log.Println(err)
 			return false
 		}
@@ -270,7 +266,7 @@ func NewRequest(rawData string) interface{} {
 		request := SessionEndedRequest{}
 		request.Type = requestType
 		request.Common = common
-		if err := json.Unmarshal(jsonBlob, &request.Data); err != nil {
+		if err := json.Unmarshal(rawData, &request.Data); err != nil {
 			log.Println(err)
 			return false
 		}
@@ -280,7 +276,7 @@ func NewRequest(rawData string) interface{} {
 			request := AudioPlayerEventRequest{}
 			request.Type = requestType
 			request.Common = common
-			if err := json.Unmarshal(jsonBlob, &request.Data); err != nil {
+			if err := json.Unmarshal(rawData, &request.Data); err != nil {
 				log.Println(err)
 				return false
 			}
@@ -289,7 +285,7 @@ func NewRequest(rawData string) interface{} {
 			request := VideoPlayerEventRequest{}
 			request.Type = requestType
 			request.Common = common
-			if err := json.Unmarshal(jsonBlob, &request.Data); err != nil {
+			if err := json.Unmarshal(rawData, &request.Data); err != nil {
 				log.Println(err)
 				return false
 			}
@@ -299,7 +295,7 @@ func NewRequest(rawData string) interface{} {
 		request := EventRequest{}
 		request.Type = requestType
 		request.Common = common
-		if err := json.Unmarshal(jsonBlob, &request.Data); err != nil {
+		if err := json.Unmarshal(rawData, &request.Data); err != nil {
 			log.Println(err)
 			return false
 		}

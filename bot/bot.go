@@ -28,7 +28,7 @@ func NewBot() *Bot {
 }
 
 // 根据每个请求分别处理
-func (my *Bot) Handler(request string) string {
+func (my *Bot) Handler(request []byte) string {
 	//logger.Debug(request)
 	
 	my.Request = model.NewRequest(request)

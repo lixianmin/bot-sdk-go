@@ -25,7 +25,7 @@ type Application struct {
 	AppId              string
 	DisableCertificate bool
 	DisableVerifyJson  bool
-	Handler            func(rawRequest string) string
+	Handler            func(rawRequest []byte) string
 }
 
 // 创建一个HTTP服务
@@ -52,8 +52,8 @@ func (my *Application) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ret := my.Handler(string(body))
-	w.Write([]byte(ret))
+	ret := my.Handler(body)
+	_, _ = w.Write([]byte(ret))
 }
 
 // 启动HTTP服务
