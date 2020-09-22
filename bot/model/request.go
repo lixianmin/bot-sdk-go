@@ -234,14 +234,13 @@ func GetSessionData(rawData []byte) data.Session {
 }
 
 func NewRequest(rawData []byte) interface{} {
-	requestType := getType(rawData)
-
 	common := data.RequestPart{}
 	if err := convert.FromJsonE(rawData, &common); err != nil {
 		log.Println(err)
 		return false
 	}
 
+	requestType := common.Request.Type
 	if requestType == INTENT_REQUEST {
 		request := IntentRequest{}
 		request.Type = requestType
