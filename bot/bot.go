@@ -75,6 +75,7 @@ func (my *Bot) OnSessionEndedRequest(fn SessionEndedRequestFunc) {
 }
 
 func (my *Bot) dispatch(request interface{}, response *model.Response) {
+	logger.Debug(request)
 	switch request := request.(type) {
 	case model.IntentRequest:
 		my.processIntentHandler(request, response)
